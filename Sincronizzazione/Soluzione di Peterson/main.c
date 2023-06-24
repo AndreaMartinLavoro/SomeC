@@ -1,12 +1,22 @@
-#include <stdio.h>
-#include <pthread.h>
+/*
+La Soluzione di Peterson è un algoritmo utilizzato per evitare 
+la condizione di stallo (deadlock) nei sistemi operativi, 
+in particolare quando più processi condividono risorse limitate.
+*/
 
-int flag[2];
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include<time.h>
+
+#define DIM 6
+
+int flag[DIM];
 int turn;
 int sharedVariable = 0;
 
 void enter_critical_section(int processId) {
-    int otherProcessId = 1 - processId;
+    int otherProcessId = (DIM - 1) - processId;
     
     // Imposta il flag corrente su true e imposta il turno all'altro processo
     flag[processId] = 1;
@@ -34,6 +44,17 @@ void* process(void* processIdPtr) {
     printf("Processo %d: Inizio sezione critica\n", processId);
     
     sharedVariable++; // Operazione nella sezione critica
+
+    int ttl = rand()%10;
+    int ttl_bk = ttl;
+    float completamento = 0;
+    printf("Processo %d: Complessita' della sezione critica pari a %d\n", processId, ttl);
+    while (ttl>0)
+    {
+        ttl--;
+        completamento = 100 - (float)ttl/ttl_bk*100;
+        printf("Processo %d: Completato per il %d/100\n", processId, (int)completamento);
+    }
     
     printf("Processo %d: Fine sezione critica\n", processId);
     leave_critical_section(processId);
@@ -45,21 +66,31 @@ void* process(void* processIdPtr) {
 }
 
 int main() {
-    pthread_t threads[2];
-    int processIds[2] = {0, 1};
+    pthread_t threads[DIM];
+    int processIds[DIM];
     
     // Inizializza le variabili condivise
-    flag[0] = 0;
-    flag[1] = 0;
+    for(int i = 0; i<DIM; i++){
+        flag[i] = 0;
+    }
+
+    // Inizializza i processIds
+    for(int i = 0; i<DIM; i++){
+        processIds[i] = i;
+    }
+
     turn = 0;
     
     // Crea i due processi
-    pthread_create(&threads[0], NULL, process, (void*)&processIds[0]);
-    pthread_create(&threads[1], NULL, process, (void*)&processIds[1]);
+    for(int i = 0; i<DIM; i++){
+        pthread_create(&threads[i], NULL, process, (void*)&processIds[i]);
+    }
+    
     
     // Attendi il completamento dei processi
-    pthread_join(threads[0], NULL);
-    pthread_join(threads[1], NULL);
+    for(int i = 0; i<DIM; i++){
+        pthread_join(threads[i], NULL);
+    }
     
     // Stampa il valore finale della variabile condivisa
     printf("Valore finale della variabile condivisa: %d\n", sharedVariable);
