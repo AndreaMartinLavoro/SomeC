@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <unistd.h>
+#include<unistd.h>
 
 #define NUM_FILOSOFI 5
 #define PENSIERI_MAX 5
