@@ -132,6 +132,11 @@ A seconda dei valori ammessi per S si distingue tra:
 # Monitor
 In informatica, un monitor è una struttura di sincronizzazione utilizzata per controllare l'accesso concorrente a risorse condivise. 
 Fornisce un meccanismo per garantire che solo un thread alla volta possa eseguire un blocco di codice all'interno del monitor, evitando così le condizioni di race e l'accesso simultaneo non controllato alle risorse.
+Per garantire la mutua esclusione, i processi che invocano un monitor sono inseriti in una coda di ingresso. Si può evitare la starvation con opportuno scheduling della coda
+
+**N.B.** le chiamate nidificate di monitor devono essere vietate.
+
+Un monitor **NON** può chiamare altri monitor monitor!!!
 
 # POSIX Thread
 I **POSIX Threads**, solitamente denominati pthreads, sono un modello di esecuzione che esiste indipendentemente da un linguaggio di programmazione, nonché un modello di esecuzione parallelo. 
@@ -140,3 +145,9 @@ Ogni flusso di lavoro viene definito thread e la creazione e il controllo di que
 
 I pthread, che sta per "POSIX threads", sono un'interfaccia di programmazione per la gestione dei thread in sistemi operativi POSIX-compatibili. 
 Sono un'implementazione di thread a livello di libreria, il che significa che non sono né specificamente "ult" né "klt".
+
+# Nota
+Nei monitor e nei semafori i principali esempi di utilizzo sono:
+1. Problema dei cinque filosofi
+2. Problema dei produttori e consumatori
+3. Problema dei lettori e scrittori
