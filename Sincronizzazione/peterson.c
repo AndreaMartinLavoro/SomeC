@@ -1,9 +1,3 @@
-/*
-La Soluzione di Peterson è un algoritmo utilizzato per evitare 
-la condizione di stallo (deadlock) nei sistemi operativi, 
-in particolare quando più processi condividono risorse limitate.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

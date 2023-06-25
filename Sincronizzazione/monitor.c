@@ -1,23 +1,3 @@
-/*
-I POSIX Threads, solitamente denominati pthreads, 
-sono un modello di esecuzione che esiste indipendentemente da un linguaggio di programmazione, 
-nonché un modello di esecuzione parallelo. 
-Consente a un programma di controllare più flussi di lavoro diversi che si sovrappongono nel tempo. 
-Ogni flusso di lavoro viene definito thread e la creazione e il controllo di questi flussi si ottiene 
-effettuando chiamate all'API dei thread POSIX. POSIX Threads è un'API 
-
-I pthread, che sta per "POSIX threads", 
-sono un'interfaccia di programmazione per la gestione dei thread in sistemi operativi POSIX-compatibili. 
-Sono un'implementazione di thread a livello di libreria, 
-il che significa che non sono né specificamente "ult" né "klt".
-
-In informatica, un monitor è una struttura di sincronizzazione utilizzata 
-per controllare l'accesso concorrente a risorse condivise. 
-Fornisce un meccanismo per garantire che solo un thread alla volta 
-possa eseguire un blocco di codice all'interno del monitor, 
-evitando così le condizioni di race e l'accesso simultaneo non controllato alle risorse.
-*/
-
 #include <stdio.h>
 #include <pthread.h>
 
