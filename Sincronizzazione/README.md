@@ -122,6 +122,7 @@ Un semaforo è una struttura dati costituita da
     - **wait(S)** (detta anche lock(S) o P(S) o down(S)) 
     - **signal(S)** (detta anche unlock(S) o V(S) o up(S))
 - eventuali operazioni per creazione e inizializzazione
+
 Le **uniche** operazioni con cui si può accedere ad un semaforo S sono
 quindi **wait(S)** e **signal(S)**
 A seconda dei valori ammessi per S si distingue tra: 
